@@ -1,0 +1,13 @@
+# Ignore artifacts:
+build
+coverage
+package-lock.json
+package.json
+.gitignore
+.nvmrc
+vite.config.json
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+README.md
+node_modules
