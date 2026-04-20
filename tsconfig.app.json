@@ -7,7 +7,7 @@
     "module": "ESNext",
     "types": ["vite/client"],
     "skipLibCheck": true,
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "baseUrl": "src",
     "paths": {
       "@/components/*": ["components/*"],
@@ -17,7 +17,8 @@
       "@/types/*": ["types/*"],
       "@/lib/*": ["lib/*"],
       "@/utils/*": ["utils/*"],
-      "@/locales/*": ["locales/*"]
+      "@/locales/*": ["locales/*"],
+      "@/hooks/*": ["hooks/*"]
     },
 
     /* Bundler mode */
