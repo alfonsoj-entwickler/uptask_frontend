@@ -2,8 +2,21 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
+import type { User } from "../types";
+import { useQueryClient } from "@tanstack/react-query";
 
-export default function NavMenu() {
+type NavMenuProps = {
+    name: User["name"];
+};
+
+export default function NavMenu({ name }: NavMenuProps) {
+    const queryClient = useQueryClient();
+
+    const logout = () => {
+        localStorage.removeItem("AUTH_TOKEN");
+        queryClient.invalidateQueries({ queryKey: ["user"] });
+    };
+
     return (
         <Popover className='relative'>
             <Popover.Button className='inline-flex items-center gap-x-1 bg-violet-600 p-1 text-sm leading-6 font-semibold'>
@@ -21,7 +34,7 @@ export default function NavMenu() {
             >
                 <Popover.Panel className='absolute left-1/2 z-10 mt-5 flex w-screen -translate-x-1/2 lg:max-w-min lg:-translate-x-48'>
                     <div className='w-full shrink bg-white p-4 text-sm leading-6 font-semibold text-gray-900 shadow-lg ring-1 ring-gray-900/5 lg:w-56'>
-                        <p className='text-center'>Hello: UserNickname</p>
+                        <p className='text-center'>Hello: {name}</p>
                         <Link
                             to='/profile'
                             className='block p-2 hover:text-purple-950'
@@ -37,7 +50,7 @@ export default function NavMenu() {
                         <button
                             className='block p-2 hover:text-purple-950'
                             type='button'
-                            onClick={() => {}}
+                            onClick={logout}
                         >
                             Logout
                         </button>
